@@ -9,7 +9,8 @@
     <script>
       function openFuse() {
         Fuse.open({
-          clientSecret: "GENERATED_CLIENT_SECRET",
+          clientSecret:
+            "fuse_sess_sandbox_a9f2abcd-5134-4908-9d5c-d903c3cec16a",
           onEvent: function (eventName, data) {
             console.log(eventName, data);
           },
@@ -19,7 +20,9 @@
           onInstitutionSelected: function (institutionId, linkTokenCallback) {
             console.log("Selected institution:", institutionId);
             // Replace the linkTokenCallback function with your own implementation
-            linkTokenCallback("GENERATED_LINK_TOKEN");
+            linkTokenCallback(
+              "eyJhZ2dyZWdhdG9yIjoidGVsbGVyIiwidGVsbGVyIjp7ImFwcGxpY2F0aW9uX2lkIjoiYXBwX29hZGdlaG9waDkzbGNtbzE4YzAwMCIsImVudmlyb25tZW50Ijoic2FuZGJveCIsImluc3RpdHV0aW9uX2lkIjoiY2hhc2UifSwic2Vzc2lvbl9jbGllbnRfc2VjcmV0IjoiZnVzZV9zZXNzX3NhbmRib3hfYTlmMmFiY2QtNTEzNC00OTA4LTlkNWMtZDkwM2MzY2VjMTZhIn0="
+            );
           },
           onExit: function () {
             console.log("Fuse Connect exited");
