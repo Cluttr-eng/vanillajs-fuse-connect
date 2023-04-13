@@ -28,6 +28,7 @@ var Fuse = {
             case "ON_SUCCESS":
               var publicToken = data.public_token;
               onSuccess(publicToken);
+              document.body.removeChild(iframe);
               break;
             case "ON_INSTITUTION_SELECTED":
               var institutionId = data.institution_id;
