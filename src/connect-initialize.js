@@ -1,5 +1,5 @@
 var Fuse = {
-  open: function (options) {
+  create: function (options) {
     var clientSecret = options.clientSecret;
     var onEvent = options.onEvent || function () {};
     var onSuccess = options.onSuccess || function () {};
@@ -16,7 +16,6 @@ var Fuse = {
     iframe.style.height = "100%";
     iframe.style.zIndex = 1000;
     iframe.style.border = "none";
-    document.body.appendChild(iframe);
 
     window.addEventListener("message", function (event) {
       if (event.origin === url) {
@@ -53,5 +52,11 @@ var Fuse = {
         }
       }
     });
+
+    return {
+      open: function () {
+        document.body.appendChild(iframe);
+      },
+    };
   },
 };

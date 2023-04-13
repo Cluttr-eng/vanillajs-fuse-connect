@@ -8,7 +8,7 @@
     <script src="connect-initialize.js"></script>
     <script>
       function openFuse() {
-        Fuse.open({
+        const fuseClient = Fuse.create({
           clientSecret: "",
           onEvent: function (eventName, data) {
             console.log(eventName, data);
@@ -25,6 +25,8 @@
             console.log("Fuse Connect exited");
           },
         });
+
+        fuseClient.open();
       }
     </script>
   </body>
