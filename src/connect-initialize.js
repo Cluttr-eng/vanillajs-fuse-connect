@@ -1,6 +1,5 @@
 var Fuse = {
   create: function (options) {
-    var clientSecret = options.clientSecret;
     var onEvent = options.onEvent || function () {};
     var onSuccess = options.onSuccess || function () {};
     var onInstitutionSelected = options.onInstitutionSelected || function () {};
@@ -8,7 +7,6 @@ var Fuse = {
     const url = options.overrideBaseUrl || "https://connect.letsfuse.com";
 
     var iframe = document.createElement("iframe");
-    iframe.setAttribute("src", `${url}/intro?client_secret=${clientSecret}`);
     iframe.style.position = "absolute";
     iframe.style.top = "0";
     iframe.style.left = "0";
@@ -54,7 +52,11 @@ var Fuse = {
     });
 
     return {
-      open: function () {
+      open: function (openOptions) {
+        iframe.setAttribute(
+          "src",
+          `${url}/intro?client_secret=${openOptions.clientSecret}`
+        );
         document.body.appendChild(iframe);
       },
     };
