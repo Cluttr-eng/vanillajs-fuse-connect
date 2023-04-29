@@ -9,6 +9,7 @@
     <script>
       function openFuse() {
         const fuseClient = Fuse.create({
+          clientSecret: "",
           onEvent: function (eventName, data) {
             console.log(eventName, data);
           },
@@ -25,9 +26,7 @@
           },
         });
 
-        fuseClient.open({
-          clientSecret: "",
-        });
+        fuseClient.open();
       }
     </script>
   </body>

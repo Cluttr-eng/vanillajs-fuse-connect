@@ -1,5 +1,6 @@
 var Fuse = {
   create: function (options) {
+    var clientSecret = options.clientSecret;
     var onEvent = options.onEvent || function () {};
     var onSuccess = options.onSuccess || function () {};
     var onInstitutionSelected = options.onInstitutionSelected || function () {};
@@ -7,6 +8,7 @@ var Fuse = {
     const url = options.overrideBaseUrl || "https://connect.letsfuse.com";
 
     var iframe = document.createElement("iframe");
+    iframe.setAttribute("src", `${url}/intro?client_secret=${clientSecret}`);
     iframe.style.position = "absolute";
     iframe.style.top = "0";
     iframe.style.left = "0";
@@ -15,7 +17,7 @@ var Fuse = {
     iframe.style.zIndex = 1000;
     iframe.style.border = "none";
 
-    window.addEventListener("message", function (event) {
+    function handleMessage(event) {
       if (event.origin === url) {
         try {
           var data = JSON.parse(event.data);
@@ -49,15 +51,16 @@ var Fuse = {
           console.log("Error parsing message from iframe", e);
         }
       }
-    });
+    }
+
+    window.addEventListener("message", handleMessage);
 
     return {
-      open: function (openOptions) {
-        iframe.setAttribute(
-          "src",
-          `${url}/intro?client_secret=${openOptions.clientSecret}`
-        );
+      open: function () {
         document.body.appendChild(iframe);
+      },
+      destroy: function () {
+        window.removeEventListener("message", handleMessage);
       },
     };
   },
