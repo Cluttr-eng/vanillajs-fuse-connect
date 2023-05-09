@@ -9,7 +9,7 @@ var Fuse = {
 
     var iframe = document.createElement("iframe");
     iframe.setAttribute("src", `${url}/intro?client_secret=${clientSecret}`);
-    iframe.style.position = "absolute";
+    iframe.style.position = "fixed";
     iframe.style.top = "0";
     iframe.style.left = "0";
     iframe.style.width = "100%";
