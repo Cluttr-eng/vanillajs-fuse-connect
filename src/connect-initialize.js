@@ -28,6 +28,7 @@ var Fuse = {
               var publicToken = data.public_token;
               onSuccess(publicToken);
               document.body.removeChild(iframe);
+              document.body.style.overflow = "auto";
               break;
             case "ON_INSTITUTION_SELECTED":
               var institutionId = data.institution_id;
@@ -42,6 +43,7 @@ var Fuse = {
             case "ON_EXIT":
               onExit();
               document.body.removeChild(iframe);
+              document.body.style.overflow = "auto";
               break;
             default:
               onEvent(eventName, data);
@@ -58,6 +60,7 @@ var Fuse = {
     return {
       open: function () {
         document.body.appendChild(iframe);
+        document.body.style.overflow = "hidden";
       },
       destroy: function () {
         window.removeEventListener("message", handleMessage);
