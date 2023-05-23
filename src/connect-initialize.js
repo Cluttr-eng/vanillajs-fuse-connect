@@ -22,6 +22,11 @@ var Fuse = {
         try {
           var data = JSON.parse(event.data);
           var eventName = data.event_name;
+          var messageClientSecret = data.client_secret;
+
+          if (messageClientSecret != clientSecret) {
+            return;
+          }
 
           switch (eventName) {
             case "ON_SUCCESS":
