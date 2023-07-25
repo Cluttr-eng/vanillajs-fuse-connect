@@ -18,6 +18,17 @@ var Fuse = {
     iframe.style.border = "none";
 
     function handleMessage(event) {
+      // Forward Flinks aggregator event to iframe
+      try {
+        if (
+            event.origin.includes("fin.ag") &&
+            iframe &&
+            iframe.contentWindow
+        ) {
+          iframe.contentWindow.postMessage(event.data, "*");
+        }
+      } catch (e) {}
+
       if (event.origin === url) {
         try {
           var data = JSON.parse(event.data);
