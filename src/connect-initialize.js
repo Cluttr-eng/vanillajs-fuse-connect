@@ -8,7 +8,6 @@ var Fuse = {
     const url = options.overrideBaseUrl || "https://connect.letsfuse.com";
 
     var iframe = document.createElement("iframe");
-    iframe.setAttribute("src", `${url}/intro?client_secret=${clientSecret}`);
     iframe.style.position = "fixed";
     iframe.style.top = "0";
     iframe.style.left = "0";
@@ -75,6 +74,7 @@ var Fuse = {
 
     return {
       open: function () {
+        iframe.setAttribute("src", `${url}/intro?client_secret=${clientSecret}`);
         document.body.appendChild(iframe);
         document.body.style.overflow = "hidden";
       },
